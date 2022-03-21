@@ -9,4 +9,4 @@
  2. Django
 
 ## Preview
-[Network]()
+[Network](https://youtu.be/NKksIKCmpDM)
