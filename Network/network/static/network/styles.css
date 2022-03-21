@@ -1,0 +1,97 @@
+body{
+	background-image: linear-gradient(#FFF, #ececec);
+	overflow-x: hidden;
+}
+.newPost{
+	width:100%;
+	margin:0 auto;
+	background: #ececec;
+	border-radius:10px;
+	box-shadow: 0px 0px 0px 2px gray;
+	padding: 10px 0px 0px 0px;
+	text-align: center;
+	position: relative;
+}
+
+#id_post {
+	border-radius: 10px;
+	box-shadow: 0px 0px 0px 2px gray;
+}
+.like{
+	border-radius:0px 0px 0px 10px;
+	border-right: 1px solid gray;
+}
+ .comment{
+ 	border-radius:0px 0px 10px 0px;
+ 	color:black;
+ }
+.like, .comment{
+	border-top:1px solid gray;
+	background: #FFF;
+}
+.like:hover, .comment:hover{
+	font-weight: bold;
+	cursor: pointer;
+	color:black;
+	text-decoration: none;
+}
+
+.badge{
+	font-size: .7rem;
+	position: absolute;
+	top:5px;
+}
+.l1{
+	background: #a4a4a4;
+}
+
+.followButton{
+	position: fixed;
+	border-radius: 0px 10px 10px 0px;
+	z-index:99;
+	box-shadow: 2px 2px 2px black;
+}
+
+.pagination a, .pagination span{
+	color: white;
+	display: block;
+	text-decoration: none;
+	padding: 5px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+}
+.number span{
+	color:black;
+	box-shadow: 0px 0px 0px gray;
+}
+
+.editPost{
+	position: absolute;
+	top:20px;
+	left:-50px;
+	cursor: pointer;
+	border-radius:  10px 0px 0px 10px;
+	transition: all 1s ease;
+}
+
+.editPost:hover{
+	padding-right: 20px;
+	left:-60px;
+}
+.editText{
+	padding:10px;
+}
+.black{
+	width:100%;
+	height: 100%;
+	background: #000;
+	opacity: .9;
+	position: fixed;
+	z-index:99;
+	display: none;
+}
+
+
+.like a:hover{
+	text-decoration: none;
+}

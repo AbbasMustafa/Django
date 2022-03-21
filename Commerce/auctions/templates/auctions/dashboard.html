@@ -1,0 +1,45 @@
+{% extends 'auctions/layout.html' %}
+{% block title %} Dashboard {%  endblock %}
+
+{% block body %}
+	<h2>{{ heading }}</h2>
+
+	<div class="row">
+		<div class="col">
+			<h2 class="text-center">Your Listings</h2>
+			<hr>
+		    <div class="row p-0 m-0">
+			    {% for item in items %}
+					    <a id="detail" href="{% url 'detail' item.slug %}" class="card col-lg-6 p-0 m-0" style="width: 18rem;">
+						  <img class="card-img-top cover" src="{{ item.mainPicture.picture.url }}" alt="{{ item.mainPicture.alt_text }}" width="242" height="225">
+						  <div class="card-body">
+						    <h5 class="card-title">{{ item.title }}</h5>
+						    <p class="card-text">
+						    	<span class="font-weight-bold">Price:</span> ${{ item.startingBid }} <br>
+						    	<span class="font-weight-bold">Created on:</span> {{ item.created_date }}
+						    </p>
+						  </div>
+						</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col">
+			<h2 class="text-center">Wiinning Listings</h2>
+			<hr>
+			    <div class="row p-0 m-0">
+			    {% for item in wonItems %}
+					    <a id="detail" href="{% url 'detail' item.slug %}" class="card col-lg-6 p-0 m-0" style="width: 18rem;">
+						  <img class="card-img-top cover" src="{{ item.mainPicture.picture.url }}" alt="{{ item.mainPicture.alt_text }}" width="242" height="225">
+						  <div class="card-body">
+						    <h5 class="card-title">{{ item.title }}</h5>
+						    <p class="card-text">
+						    	<span class="font-weight-bold">Price:</span> ${{ item.startingBid }} <br>
+						    	<span class="font-weight-bold">Created on:</span> {{ item.created_date }}
+						    </p>
+						  </div>
+						</a>
+				{% endfor %}
+			</div>
+	</div>
+	</div>
+{% endblock %}

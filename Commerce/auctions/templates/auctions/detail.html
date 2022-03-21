@@ -1,0 +1,77 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block body %}
+	
+	{% if watcher %}
+		<div class="alert alert-info text-center p-1 m-3">This is in your watchlist!</div>
+	{% endif %}
+	
+	{% if bidError %}
+		<div class="alert alert-danger text-center p-1 m-3">{{ bidError }}</div>
+	{% endif %}
+
+	<div class="row mainContainer m-3">
+
+		{% for pic in pics %}
+			<div class="image col-md-5 border">
+				<img class="card-img-top cover" src="{{ pic.picture.url }}" alt="{{ pic.alt_text }}" width="242" height="100%">
+			</div>
+		{% endfor %}
+
+		<div class="card col-md-7" style="width: 18rem;">
+		  	<div class="card-body p-0">
+
+		  		{% if not item.flActive %}
+					<div class="alert alert-dark text-center m-1 p-1">This Auction has been closed!</div>
+					<div class="alert alert-success text-center m-1 p-1">SOLD! to {{ winner }}</div>
+				{% endif %}
+		  		
+		  		{% if user.username == item.creator.username and item.flActive %}
+		  			<a  class="closed btn-primary" href="{% url 'close_auction' item.slug %}">Close Auction</a>
+		  		{% endif %}
+		  		
+		  		<br>
+		  		{% if watcher %}
+		  			<a style="top:220px;" class="closed btn-primary" href="{% url 'change_watchlist' item.slug %}">Remove from Watchlist</a>
+		    	{% else %}
+		    		<a style="top:220px;" class="closed btn-primary" href="{% url 'change_watchlist' item.slug %}">Add to Watchlist</a>
+		    	{% endif %}
+		    	<h5 class="card-title">{{ item.title }}</h5>
+		    	<h6 class="card-subtitle mb-2 text-muted">{{ item.description }}</h6>
+		    	{% if item.flActive %}
+			    	<p class="card-text">
+			    		<span class="font-weight-bold">Starting Bid: $</span>{{ item.startingBid }} <br>
+			    		{% if item.currentBid %}
+							<span class="font-weight-bold">Current Bid: $</span>{{ item.currentBid }} 
+						{% else %}
+							<span class="font-weight-bold">Current Bid: $</span>0.0
+						{% endif %}
+						<br>
+							<span class="font-weight-bold">{{ bid_len.count }} Bid(s) so far </span>
+			    	</p>
+			    	{% if user.username != item.creator.username %}
+				    	<form action="{% url 'place_bid' item.slug %}" method="POST">
+							{% csrf_token %}
+							{{ form.offer }}
+							<input class="btn btn-secondary" type="submit" name="bid" value="Bid!">
+						</form>
+					{% endif %}
+				{% else %}
+					<p>
+						<span class="font-weight-bold">Closing Bid: $</span>{{ item.currentBid }} <br>
+						<span class="font-weight-bold">Total {{ bid_len.count }} Bid(s)</span>
+					</p>
+
+				{% endif%}
+
+		    	
+		    	<p class="card-text">
+		    		<span class="font-weight-bold">Category: </span>{{ item.category }} <br>
+					<span class="font-weight-bold">Created By: </span>{{ item.creator }} 
+		    	</p>
+		  	</div>
+	</div>
+</div>
+{% endblock %}

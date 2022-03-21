@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+	Page Not Found!
+{% endblock %}
+
+
+{% block body %}
+	<div class="alert alert-danger text-center">Page Not Found!</div>
+	<h2 class="display-4 heading2">It's Look new to me.</h2>
+	<p class="text-center">
+		This page "{{ entry }}" is not in our entries <br>
+	 	If you want to add it <a href="{% url 'create' %}">Click Here!</a> <br>
+	 	Make our wiki bigger and better :)
+	 </p>
+{% endblock %}

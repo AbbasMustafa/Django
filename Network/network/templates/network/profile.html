@@ -1,0 +1,123 @@
+{% extends 'network/layout.html' %}
+
+{% block title %}
+	{{ profileName }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="display-4 text-center font-weight-bold">{{ profileName }}</h1>
+	
+	{% if user.username != profileName %}
+		<div onclick="follow(this.id)" class="btn btn-primary followButton" id="{{ profileName }}">	
+			{{ textFollow }}
+		</div>
+	{% endif %}
+
+	<div class="row">
+		<div class="col-md-3 col-1"></div>
+		<div class="col">
+			<div class="row text-center mb-3 font-weight-bold">
+				<div class="col border p-2">
+					Posts: <span>{{ countPost }}</span>
+				</div>
+				<div class="col border p-2">
+					Followers: <span id="follower" >{{ lenFollowers }}</span>
+				</div>
+				<div class="col border p-2">
+					Following: <span id="following">{{ lenFollowing }}</span>
+				</div>
+			</div>
+
+			<div class="row"> 
+		    	<div class="col"> 
+
+				    {% for post, like, ownLike, comments in posts %}
+				    	<div onselectstart="return false" class="newPost border mb-2">
+				    		<div class="p{{post.id}}">
+				    		<p class="lead float-right small pr-3">{{ post.date }}</p>
+				    		<p class="lead float-left small pl-3">Post By: 
+				    		<span class="font-weight-bold">
+				    			<a href="{% url 'profile' post.creator  %}">{{ post.creator }}</a>
+				    		</span>
+				    		</p>
+				    		<div class="clearfix"></div>
+
+		    				{% if user.username == post.creator.username %}
+		    					<span id="{{ post.id }}" class="editPost btn-primary btn-sm">Edit</span>
+		    				{% endif %}
+
+				    		<p id="text{{post.id}}" class="text-left pl-3">{{ post.post }}</p>
+				    		<div class="row m-0 liked">
+				    			
+				    	{% if user.is_authenticated %}
+		    			<div onclick="like(this.id)" id="{{post.id}}div" class="l{{ ownLike }} like col p-0 col">
+		    				<span id="{{post.id}}like">
+		    					{% if ownLike == 1 %}
+		    						Liked
+		    					{% else %}
+		    						Like
+		    					{% endif %}
+		    				</span>
+		    				<span id="{{post.id}}count" class="badge badge-primary ml-3">
+		    						{{ like }}
+		    				</span>
+		    			</div>
+		    			{% else %}
+						<a style="color:black;" href="{% url 'login' %}" id="{{post.id}}div" class="l{{ ownLike }} like col p-0 col">
+		    				<span id="{{post.id}}like">
+		    					{% if ownLike == 1 %}
+		    						Liked
+		    					{% else %}
+		    						Like
+		    					{% endif %}
+		    				</span>
+		    				<span id="{{post.id}}count" class="badge badge-primary ml-3">
+		    						{{ like }}
+		    				</span>
+		    			</a>
+		    			{% endif %}
+
+				    			<a href="{% url 'comments' post.id %}" id="{{ post.id }}" class="comment col p-0">Comment
+									<span class="badge badge-primary ml-3">{{ comments }}</span>
+		    					</a>
+
+				    		</div>
+				    		</div>
+				    	</div>
+				    {%  endfor %}
+				    
+		    	</div>
+		    </div>
+
+		    <div class="row pagination text-center mt-3 mb-3 p-2">
+			
+			<div class="col-5 text-center">
+		    	{% if page_obj.has_previous %}
+					<a class="bg-primary" href="?page={{ page_obj.previous_page_number }}">
+						Previous
+					</a>
+				{% else %}
+					<span role="button" class="bg-secondary disabled" >Previous</span>
+				{% endif %}
+			</div>
+
+			<div class="col-2 font-weight-bold number">
+				<span>{{ page_obj.number }}</span> 
+			</div>
+
+			<div class="col-5">
+				{% if page_obj.has_next %}
+					<a class="bg-primary" href="?page={{ page_obj.next_page_number }}">
+						Next
+					</a>
+				{% else %}
+					<span role="button" class="bg-secondary disabled" >Next</span>
+				{% endif %}
+			</div>
+
+		</div>
+		   
+		</div>		
+		<div class="col-md-3 col-1"></div>
+	</div>
+{% endblock %}

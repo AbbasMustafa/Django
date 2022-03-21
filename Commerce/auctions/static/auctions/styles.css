@@ -1,0 +1,77 @@
+
+
+body {
+    padding: 10px;
+    background: #ececec;
+}
+
+ul.nav{
+	background: #FFF;
+	box-shadow: 2px 2px 2px #a4a4a4;
+}
+ul.nav a{
+	color:#000;
+}
+ul.nav a:hover{
+	text-shadow: 2px 2px 2px #a4a4a4;
+}
+h2{
+	font-size:1rem;
+	margin: 20px;
+	text-align: center;
+}
+div.ListingForm{
+	width:70%;
+	margin: 0 auto;
+	background:rgba(200,200,200,.7);
+	border-radius: 10px;
+}
+a#detail{
+	color:black;
+	text-decoration: none;
+	box-shadow: 2px 2px 2px #a4a4a4;
+}
+a#detail:hover{
+	background: #ececec;
+}
+.cover{
+	object-fit: cover;
+}
+
+.mainContainer{
+	margin: 0 auto;
+	box-shadow: 2px 2px 2px #a4a4a4;
+}
+.bidInput{
+	width:150px;
+	font-size: .8rem;
+}
+.card{
+	font-size:.9rem;
+}
+.image{
+	padding:0px;
+	object-fit: cover;
+	height:400px;
+}
+.closed{
+	position: fixed;
+	top:170px;
+	left:0px;
+	padding:10px;
+	border-radius: 0px 10px 10px 0px;
+	opacity: .7;
+}
+.closed:hover{
+	opacity: 1;
+	text-decoration: none;
+}
+.cat_items{
+	list-style: none;
+	color:black;
+}
+.cat_items:hover{
+	text-decoration: none;
+	background: #a4a4a4;
+	color:#FFF;
+}

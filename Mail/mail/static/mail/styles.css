@@ -1,0 +1,51 @@
+body{
+	background: #ececec;
+}
+
+textarea {
+    min-height: 400px;
+}
+
+h3 {
+	text-align: center;
+}
+.mainContianer{
+	width:60%;
+	margin:0 auto;
+	background: #ececec;
+	padding:30px;
+	border-radius: 20px;
+	box-shadow: 2px 2px 2px #000;
+}
+
+.email_user {
+	position: absolute;
+	right:0px;
+	bottom: 0px;
+}
+
+input, textarea {
+	box-shadow: 0px 0px 2px #000;
+}
+
+.listbar {
+	box-shadow: 0px 0px 2px #000;
+}
+
+
+.error {
+	box-shadow: 2px 2px 2px #000;
+}
+
+.emailDiv {
+	font-size: .8rem;
+	cursor: pointer;
+}
+
+.email_view p{
+	margin:0px;
+}
+
+.email_view p span {
+	font-weight: bold;
+} 

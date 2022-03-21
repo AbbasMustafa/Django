@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <h1 class="display-4 font-weight-bold float-left">Auctions</h1>
+        <div class="float-right">
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div>
+        
+        <div class="clearfix"></div>
+
+        <div class="border">
+            <ul class="nav d-flex justify-content-center">
+                <li>
+                    <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu p-0 m-0 text-center" aria-labelledby="navbarDropdown">
+                      {% for category in categories %}
+                            <a class="col-12 border p-0 text-center list-group-item cat_items" href="{% url 'select_category' category %}">{{ category }}</a>
+                    {% endfor %}
+                      <a class="dropdown-item p-0" href="{% url 'categories_view' %}">More...</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="nav-link" href="{% url 'closed_listing' %}">Closed Listings</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'watchlist_view' %}">Watchlist
+                        <span class="badge badge-secondary"> {{ watch_count }} </span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'create_listing' %}">Create Lisitng</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="container">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

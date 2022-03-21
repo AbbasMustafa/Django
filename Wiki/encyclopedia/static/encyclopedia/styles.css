@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    background-color: white;
+}
+
+code {
+    white-space: pre;
+}
+
+.heading1 {
+    margin-top: 10px;
+    padding: 0px;
+}
+
+.heading2 {
+    padding-bottom:18px;
+    text-align: center;
+    border-bottom: 2px solid #a4a4a4;
+}
+
+textarea {
+    height: 90vh;
+    width: 80%;
+}
+
+.main {
+    padding: 10px;
+}
+
+.search {
+    width: 100%;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.sidebar {
+    background: #ececec;
+    border-right: 1px solid black;
+    box-shadow:2px 2px 10px #000;
+    height: 100vh;
+    padding: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.sidebar a{
+    color: #FFF;
+    display:inline-block;
+    border-bottom: 2px solid #FFF;
+    width:100%;
+    background: #000;
+    text-align: center;
+    padding:10px;
+}
+.sidebar a:hover{
+    color: #000;
+    background: #FFF;
+    text-decoration: none;   
+}
+.list, .pageCenter{
+    width:90%;
+    margin:0 auto;
+}
+
+.list a {
+    color:#000;
+}
+.list a:hover{
+    text-decoration: none;
+    background: #a4a4a4;;
+}
+.list .card {
+    box-shadow: 1px 1px 10px #000;
+    margin:1px;
+}
+.btn {
+    border-radius: 0px;
+    width:100%;
+}

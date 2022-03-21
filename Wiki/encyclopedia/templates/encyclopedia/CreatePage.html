@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create Entry
+{% endblock %}
+
+{% block body %}
+	{% if edit %}
+		<h2 class="display-4 heading2">Editing "{{ title }}"</h2>
+	{% else %}
+		<h2 class="display-4 heading2">Create Entry</h2>
+	{% endif %}
+    <hr>
+    {% if existing %}
+    	<div class="alert alert-danger text-center m-0">This "{{ title }}" Page already exist in our entries! Want to visit "<a href="{% url 'entry_view' title %}">{{ title }}</a>"!</div>
+    {% endif %}
+    <form class="pageCenter" action="{% url 'create' %}" method="POST">
+    	{% csrf_token %}
+    	<div class="form-group">
+    		{% if not edit %}
+    			<label for="title" class="font-weight-bold">Title</label>
+    		{% endif %}
+    		{{ form.entryTitle }}
+  		</div>
+    	<div class="form-group">
+    		<label for="content" class="font-weight-bold">Content</label>
+    		{{ form.entryContent }}
+  		</div>
+    	{{ form.editContent }}
+    	<input class="btn btn-success" type="submit" name="submit">
+    </form>
+
+{% endblock %}

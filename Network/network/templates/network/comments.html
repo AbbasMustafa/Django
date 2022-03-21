@@ -1,0 +1,98 @@
+{% extends 'network/layout.html' %}
+
+{% block title %}
+	Commnets
+{% endblock %}
+
+{% block body %}
+	<h1 class="display-4 text-center">Commnets</h1>
+	<div class="row">
+		<div class="col-md-3 col-1"></div>
+		
+		<div class="col">	
+			<div class="post">
+				
+				<div onselectstart="return false" class="newPost border mb-2">
+		    		<div class="p{{post.id}}">
+		    		<p class="lead float-right small pr-3">{{ post.date }}</p>
+		    		<p class="lead float-left small pl-3">Post By: 
+		    		<span class="font-weight-bold">
+		    			<a href="{% url 'profile' post.creator  %}">{{ post.creator }}</a>
+		    		</span>
+		    		</p>
+		    		<div class="clearfix"></div>
+		    			{% if user.username == post.creator.username %}
+		    				<span id="{{ post.id }}" class="editPost btn-primary btn-sm">Edit</span>
+		    			{% endif %}
+		    		<p id="text{{post.id}}" class="text-left pl-3">{{ post.post }}</p>
+		    		<div class="row m-0 liked">
+		    			
+		    			{% if user.is_authenticated %}
+		    			<div onclick="like(this.id)" id="{{post.id}}div" class="l{{ ownLike }} like col p-0 col">
+		    				<span id="{{post.id}}like">
+		    					{% if ownLike == 1 %}
+		    						Liked
+		    					{% else %}
+		    						Like
+		    					{% endif %}
+		    				</span>
+		    				<span id="{{post.id}}count" class="badge badge-primary ml-3">
+		    						{{ like }}
+		    				</span>
+		    			</div>
+		    			{% else %}
+						<a style="color:black;" href="{% url 'login' %}" id="{{post.id}}div" class="l{{ ownLike }} like col p-0 col">
+		    				<span id="{{post.id}}like">
+		    					{% if ownLike == 1 %}
+		    						Liked
+		    					{% else %}
+		    						Like
+		    					{% endif %}
+		    				</span>
+		    				<span id="{{post.id}}count" class="badge badge-primary ml-3">
+		    						{{ like }}
+		    				</span>
+		    			</a>
+		    			{% endif %}
+
+
+		    			<a href="{% url 'comments' post.id %}" id="{{ post.id }}" class="comment col p-0">Comment
+								<span class="badge badge-primary ml-3">{{comments|length}}</span>
+		    			</a>
+
+		    		</div>
+		    		</div>
+		    	</div>
+
+		    	{% if user.is_authenticated %}
+		    	<div class="addComments">
+		    			<form method="POST">
+		    				<div action="{url 'comments' post.id}" class="form-group">
+			    				{% csrf_token %}
+			    				<input autofocus="true" style="width:100%;padding:10px; border-radius: 20px" type="text" name="comment" placeholder="Add a comment">
+			    			</div>
+		    			</form>
+		    	</div>
+		    	{% endif %}
+		    	
+		    	<div class="comments text-center">
+		    		<div onselectstart="return false" class="newPost p-0">
+		    		{% for comment in comments %}
+		    			<p class="row m-2">
+			    			<span class="col-2 float-left font-weight-bold">{{ comment.comment_by }}: </span>
+			    			<span class="col">{{ comment.comment }}</span>
+			    			<span class="col-2 float-right small">{{ comment.date }}</span>
+		    			</p>
+		    		{% empty %}
+		    			<p>No Comments available</p>
+		    		{% endfor %}
+		    		</div>
+		    	</div>
+
+
+			</div>
+		</div>
+		
+		<div class="col-md-3 col-1"></div>
+	</div>
+{% endblock %}
