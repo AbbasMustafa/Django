@@ -1,0 +1,69 @@
+{% extends 'google\layout.html' %}
+
+{% block title %}
+	Advance Search
+{% endblock %}
+
+{% block links %}
+	<div class="links">
+		<a href="{% url 'index' %}">Search</a> 
+		<span class="font-weight-bold"> | </span>
+		<a href="{% url 'images' %}">Images</a>
+	</div>
+{% endblock %}
+
+{% block images %}
+	<p class="Images_text">Advance</p>
+{% endblock %}
+
+{% block body %}
+	<h2>Advance Search</h2>
+	<hr>
+	<div class="container">
+		<div class="form-group row m-1">
+			<h3 class="col-md-3">Finds Page With...</h3>
+			<div class="col-md-5">
+			</div>
+			<h3 class="col-md-4">To do this in the search box.</h3>
+		</div>
+		<form class="adv_search" action="https://www.google.com/search" method="GET">
+			<div class="form-group row m-3">
+			    <label for="1" class="col-md-3 col-form-label">all these words: </label>
+			    <div class="col-md-5">
+			    	{{ forms.as_q }}
+			    </div>
+			    <span class="col-md-4">Type the important words: tri-colour rat terrier</span>
+			</div>
+			<div class="form-group row m-3">
+				<label for="2" class="col-md-3 col-form-label">this exact word or phrase:</label>
+			    <div class="col-md-5">
+			    	{{ forms.as_epq }}
+			  	</div>
+			  	<span class="col-md-4">Put exact words in quotes: "rat terrier"</span>
+			</div>
+			<div class="form-group row m-3">
+				<label for="3" class="col-md-3 col-form-label">any of these words:</label>
+			    <div class="col-md-5">
+			    	{{ forms.as_oq }}
+			  	</div>
+			  	<span class="col-md-4">Type OR between all the words you want: miniature OR standard</span>
+			</div>
+			<div class="form-group row m-3">
+				<label for="4" class="col-md-3 col-form-label">none of these words:</label>
+			    <div class="col-md-5">
+			    	{{ forms.as_eq }}
+			  	</div>
+			  	<span class="col-md-4">Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"</span>
+			</div>
+			<div class="form-group row m-2">
+				<div class="col-md-1"></div>
+			    <div class="col-md-10">
+			  	</div>
+			  	<div class="col-md-1">
+			  		<input class="btn btn-primary btn-sm" type="submit" value="Search">
+				</div>
+			</div>
+			
+		</form>
+	</div>
+{% endblock %}

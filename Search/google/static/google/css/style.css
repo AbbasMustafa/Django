@@ -1,0 +1,65 @@
+body {
+	font-size: 16px;
+	background: #ececec;
+}
+
+div.links {
+	position: absolute;
+	top:0px;
+	right:10px;
+}
+div.links a {
+	color:#000;
+	text-decoration: none;
+}
+div.links a:hover {
+	text-decoration: underline;
+}
+
+div.search {
+	border-radius: 50px;
+	padding:10px;
+	max-width: 500px;
+	margin:0 auto;
+	background: #FFF;
+}
+div.search:hover{
+	box-shadow: 1px 1px 2px gray;
+}
+div.search input[type="text"]{
+	width:100%;
+	border: 0px;
+	outline: 0px;
+	font-size: .8rem;
+}
+div.search img {
+	cursor: pointer;
+}
+
+div.logo {
+	width:370px;
+	margin:0 auto;
+	position: relative;
+}
+p.Images_text {
+	position: absolute;
+	bottom:-20px;
+	right:0px;
+	font-size: 1rem;
+}
+
+.adv_search span {
+	font-size: .7rem;
+}
+.adv_search label {
+	padding-left: 0px;
+}
+
+h3 {
+	font-size: .9rem;
+}
+h2 {
+	font-size: 2rem;
+	font-weight: normal;
+	margin-left:20px;
+}

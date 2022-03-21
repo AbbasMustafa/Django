@@ -1,0 +1,35 @@
+{% extends 'google/layout.html' %}
+{% load static %}
+
+{% block title %}
+	Google Images
+{% endblock %}
+
+{% block links %}
+	<div class="links">
+		<a href="{% url 'index' %}">Search</a> 
+		<span class="font-weight-bold"> | </span>
+		<a href="{% url 'AdvnaceSearch' %}">Advance Search</a>
+	</div>
+{% endblock %}
+
+{% block images %}
+	<p class="Images_text">Images</p>
+{% endblock %}
+
+{% block body %}
+	<form action="https://www.google.com/search" method="GET">
+		<div class="border search row mt-2"> 
+			<label for="search" class="col-1">
+				<img src="{% static 'google/images/magnify.png' %}" width="25">
+			</label>
+			<div class="col-10">
+				{{ forms.q }}
+				{{ forms.tbm}}
+			</div>
+			<div class="col-1">
+				<img src="{% static 'google/images/mic.png' %}" width="15">
+			</div>
+		</div>
+	</form>
+{% endblock %}

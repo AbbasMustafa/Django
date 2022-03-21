@@ -1,0 +1,38 @@
+{% extends 'google/layout.html' %}
+{% load static %}
+
+{% block title %}
+	Google Search
+{% endblock %}
+
+{% block links %}
+	<div class="links">
+		<a href="{% url 'images' %}">Images</a> 
+		<span> | </span>
+		<a href="{% url 'AdvnaceSearch' %}">Advance Search</a>
+	</div>
+{% endblock %}
+
+{% block images %}
+	<p class="Images_text">Search</p>
+{% endblock %}
+
+{% block body %}
+	<form action="https://www.google.com/search" method="GET">
+		<div class="border search row mt-2"> 
+			<label for="search" class="col-1">
+				<img src="{% static 'google/images/magnify.png' %}" width="25">
+			</label>
+			<div class="col-10">
+				{{ forms.q }}
+			</div>
+			<div class="col-1">
+				<img src="{% static 'google/images/mic.png' %}" width="15">
+			</div>
+		</div>
+		<div class="text-center pt-3">
+			<input type="submit" class="btn btn-primary btn-sm" name="Search" value="Google Search">
+			<input type="submit" class="btn btn-primary btn-sm" name="btnI" value="I'm Feeling Lucky">
+		</div>
+	</form>
+{% endblock %}
